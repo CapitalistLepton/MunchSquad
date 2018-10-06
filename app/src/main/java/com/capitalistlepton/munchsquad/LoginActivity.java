@@ -1,13 +1,16 @@
 package com.capitalistlepton.munchsquad;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.support.v4.app.Fragment;
 
-public class LoginActivity extends AppCompatActivity {
 
+public class LoginActivity extends SingleFragmentActivity {
+
+    /**
+     * Each Activity should be composed of fragments typically 1 or 2.
+     * @return
+     */
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+    protected Fragment createFragment() {
+        return new LoginFragment();
     }
 }
