@@ -1,4 +1,4 @@
-package com.capitalistlepton.munchsquad;
+package com.capitalistlepton.munchsquad.Fragment;
 
 
 import android.os.Bundle;
@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.capitalistlepton.munchsquad.R;
 
 public class LoginFragment extends Fragment {
 
