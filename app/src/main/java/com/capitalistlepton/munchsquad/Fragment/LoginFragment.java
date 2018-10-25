@@ -1,4 +1,4 @@
-package com.capitalistlepton.munchsquad.Fragment;
+ackage com.capitalistlepton.munchsquad.Fragment;
 
 
 import android.content.Intent;
@@ -35,9 +35,7 @@ public class LoginFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 //        setHasOptionsMenu(true);
-
     }
 
     @Override
