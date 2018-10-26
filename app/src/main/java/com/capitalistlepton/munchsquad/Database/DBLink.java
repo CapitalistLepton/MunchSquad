@@ -16,7 +16,7 @@ import org.json.JSONObject;
 
 public class DBLink {
 
-    private static final String BASE_URL = "https://munchsquad-api.herokuapp.com/";
+    private static final String BASE_URL = "https://munchsquad-api.herokuapp.com";
 /*
 
     private boolean usernameAvailable(String username) throws UnsupportedEncodingException, IOException {
@@ -46,6 +46,10 @@ public class DBLink {
         HttpURLConnection connection = null;
         try {
             //Create connection
+            //TODO Don't disable network thread checking... bad practice.
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+
             url = new URL(BASE_URL + targetURL);
             connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");

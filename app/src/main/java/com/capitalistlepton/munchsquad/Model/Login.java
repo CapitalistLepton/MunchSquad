@@ -37,7 +37,7 @@ public class Login {
      * @param name Full name of the new user
      * @return if the creation was successful or not
      */
-    public static boolean createUser(String username, String password, String name) {
+    public static boolean createUser(String name, String password, String username) {
         try {
             String params = "username=" + URLEncoder.encode(username, "UTF-8") +
                     "&password=" +

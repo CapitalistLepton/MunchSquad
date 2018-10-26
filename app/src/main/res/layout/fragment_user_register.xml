@@ -12,9 +12,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Name"
+        android:hint="@string/hint_name"
         android:layout_margin="10dp"
         android:layout_gravity="center"
+        android:textColor="@color/colorText"
+        android:textColorHint="@color/colorText"
+        android:backgroundTint="@color/colorPrimary"
         android:inputType="textEmailAddress" />
 
     <EditText
@@ -26,6 +29,10 @@
         android:hint="@string/user_register_username_hint"
         android:layout_gravity="center"
         android:gravity=""
+        android:textColor="@color/colorText"
+        android:backgroundTint="@color/colorPrimary"
+
+        android:textColorHint="@color/colorText"
         android:layout_margin="10dp"/>
 
     <EditText
@@ -36,6 +43,9 @@
         android:hint="@string/user_register_password_hint"
         android:layout_margin="10dp"
         android:layout_gravity="center"
+        android:backgroundTint="@color/colorPrimary"
+        android:textColor="@color/colorText"
+        android:textColorHint="@color/colorText"
         android:inputType="textPassword" />
 
 
@@ -45,7 +55,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="10dp"
-
         android:background="@drawable/button"
         android:text="@string/user_register_button" />
 

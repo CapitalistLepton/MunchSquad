@@ -32,7 +32,8 @@ public class UserRegisterFragment extends Fragment {
             public void onClick(View v) {
                 boolean result;
                 String status;
-                result = Login.createUser(mNameText.toString(), mPasswordText.toString(), mUsernameText.toString());
+                result = Login.createUser(mNameText.getText().toString(),
+                        mPasswordText.getText().toString(), mUsernameText.getText().toString());
                 if (result) status = "Account created";
                 else status = "Error Occured";
 
@@ -41,6 +42,5 @@ public class UserRegisterFragment extends Fragment {
         });
 
         return v;
-
     }
 }
