@@ -3,6 +3,7 @@ package com.capitalistlepton.munchsquad.Activity;
 import android.support.v4.app.Fragment;
 
 import com.capitalistlepton.munchsquad.Fragment.FoodFragment;
+import com.capitalistlepton.munchsquad.Fragment.LoginFragment;
 
 
 public class LoginActivity extends SingleFragmentActivity {
@@ -13,6 +14,6 @@ public class LoginActivity extends SingleFragmentActivity {
      */
     @Override
     protected Fragment createFragment() {
-        return new FoodFragment();
+        return new LoginFragment();
     }
 }

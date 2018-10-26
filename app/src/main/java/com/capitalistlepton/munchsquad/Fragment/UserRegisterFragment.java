@@ -9,27 +9,35 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.capitalistlepton.munchsquad.Model.Login;
 import com.capitalistlepton.munchsquad.R;
 
 public class UserRegisterFragment extends Fragment {
 
-    private String mUsername, mPassword, mAddress, mEmail;
-    private EditText mUsernameText, mPasswordText, mAddressText, mEmailText;
+    private EditText mNameText, mUsernameText, mPasswordText;
     private Button mRegisterButton;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        //sets view to fragment_login
         View v = inflater.inflate(R.layout.fragment_user_register, container, false);
-
         mRegisterButton = v.findViewById(R.id.user_register_button);
+        mNameText = v.findViewById(R.id.user_register_name);
+        mUsernameText = v.findViewById(R.id.user_register_username);
+        mPasswordText = v.findViewById(R.id.user_register_password);
 
 
         mRegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //handle register button
+                boolean result;
+                String status;
+                Login login = new Login();
+                result = login.createUser(mNameText.toString(), mPasswordText.toString(), mUsernameText.toString());
+                if (result) status = "Account created";
+                else status = "Error Occured";
+
+                Toast.makeText(getContext(), status,Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="16dp"
     android:orientation="vertical"
+    android:background="@color/colorAccent"
     android:layout_gravity="center_vertical"
     tools:context=".Activity.LoginActivity">
 
@@ -14,24 +14,31 @@
         android:id="@+id/login_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:textColorHighlight="#DBD492"
         android:hint="Username"/>
 
     <EditText
         android:id="@+id/login_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_margin="10dp"
         android:hint="Password"/>
 
     <Button
         android:id="@+id/login_login_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/button"
+        android:layout_margin="10dp"
         android:text="Login"/>
 
     <TextView
-        android:id="@+id/login_advanced"
+        android:id="@+id/login_new_user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="advanced"/>
+        android:layout_marginLeft="10dp"
+        android:text="New User?"/>
 
 </LinearLayout>
