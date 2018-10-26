@@ -7,46 +7,17 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLEncoder;
 
-import org.json.*;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 public class DBLink {
 
-    String baseURL = "https://munchsquad-api.herokuapp.com/";
-
-    public boolean createUser(String name, String password, String username) throws IOException {
-        boolean result;
-        String params = "name=" + encode(name) +
-                "&username=" + encode(username) +
-                "&password=" + encode(password);
-        if (usernameAvailable(username)) {
-            post(baseURL + "customers/", params);
-            result = true;
-        } else {
-            System.out.println("That username is already taken.");
-            result = false;
-        }
-        return result;
-    }
-
-    public boolean login(String username, String password) throws UnsupportedEncodingException, JSONException, IOException {
-        boolean result = false;
-        if (!usernameAvailable(username)) {
-            result = BCrypt.checkpw(password, getHashedPw(username));
-        }
-        return result;
-    }
-
-    private String getHashedPw(String username) throws JSONException, IOException {
-        JSONObject info = new JSONObject(get("customers/" + username));
-        return info.getString("password");
-
-    }
+    private static final String BASE_URL = "https://munchsquad-api.herokuapp.com/";
+/*
 
     private boolean usernameAvailable(String username) throws UnsupportedEncodingException, IOException {
         String result = get("customers/" + encode(username));
@@ -69,31 +40,29 @@ public class DBLink {
             }
         }
     }
-
-    public String post(String targetURL, String urlParameters)
-    {
+*/
+    public static JSONObject post(String targetURL, String urlParameters) {
         URL url;
         HttpURLConnection connection = null;
         try {
             //Create connection
-            url = new URL(targetURL);
-            connection = (HttpURLConnection)url.openConnection();
+            url = new URL(BASE_URL + targetURL);
+            connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Content-Type",
                     "application/x-www-form-urlencoded");
 
-            connection.setRequestProperty("Content-Length", "" +
+            connection.setRequestProperty("Content-Length",
                     Integer.toString(urlParameters.getBytes().length));
             connection.setRequestProperty("Content-Language", "en-US");
 
-            connection.setUseCaches (false);
+            connection.setUseCaches(false);
             connection.setDoInput(true);
             connection.setDoOutput(true);
 
             //Send request
-            DataOutputStream wr = new DataOutputStream (
-                    connection.getOutputStream ());
-            wr.writeBytes (urlParameters);
+            DataOutputStream wr = new DataOutputStream(connection.getOutputStream ());
+            wr.writeBytes(urlParameters);
             wr.flush ();
             wr.close ();
 
@@ -101,13 +70,22 @@ public class DBLink {
             InputStream is = connection.getInputStream();
             BufferedReader rd = new BufferedReader(new InputStreamReader(is));
             String line;
-            StringBuffer response = new StringBuffer();
+            StringBuilder response = new StringBuilder();
             while((line = rd.readLine()) != null) {
                 response.append(line);
                 response.append('\r');
             }
             rd.close();
-            return response.toString();
+
+            JSONObject result;
+            try {
+                result = new JSONObject(response.toString());
+            } catch (JSONException e) {
+                e.printStackTrace();
+                result = null;
+            }
+            connection.disconnect();
+            return result;
 
         } catch (Exception e) {
 
@@ -122,36 +100,39 @@ public class DBLink {
         }
     }
 
-    private String get(String request) throws IOException {
+    public static JSONObject get(String request) throws IOException {
         //TODO Don't disable network thread checking... bad practice.
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        URL url = new URL(baseURL + request);
+        URL url = new URL(BASE_URL + request);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("GET");
-        int responseCode = con.getResponseCode();
+//        int responseCode = con.getResponseCode();
         //System.out.println("GET Response Code: " + responseCode);
-        if (responseCode == HttpURLConnection.HTTP_OK) { // success
+//        if (responseCode == HttpURLConnection.HTTP_OK) { // success
             BufferedReader in = new BufferedReader(new InputStreamReader(
                     con.getInputStream()));
             String inputLine;
-            StringBuffer response = new StringBuffer();
+            StringBuilder response = new StringBuilder();
 
             while ((inputLine = in.readLine()) != null) {
                 response.append(inputLine);
             }
             in.close();
-            System.out.println(response.toString());
-            // print result
-            return response.toString();
-        } else {
+//            System.out.println(response.toString());
+
+            JSONObject result;
+            try {
+                result = new JSONObject(response.toString());
+            } catch (JSONException e) {
+                e.printStackTrace();
+                result = null;
+            }
+            return result;
+   /*     } else {
             return "GET failed";
-        }
+        }*/
 
-    }
-
-    private String encode(String toEncode) throws UnsupportedEncodingException {
-        return URLEncoder.encode(toEncode, "UTF-8");
     }
 }

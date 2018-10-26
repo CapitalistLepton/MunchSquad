@@ -1,4 +1,4 @@
-ackage com.capitalistlepton.munchsquad.Fragment;
+package com.capitalistlepton.munchsquad.Fragment;
 
 
 import android.content.Intent;
@@ -15,19 +15,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.capitalistlepton.munchsquad.Activity.UserRegisterActivity;
-import com.capitalistlepton.munchsquad.Database.DBLink;
 import com.capitalistlepton.munchsquad.Model.Login;
 import com.capitalistlepton.munchsquad.R;
-
-import org.json.JSONException;
-
-import java.io.IOException;
 
 public class LoginFragment extends Fragment {
 
     private static final String ARG_LOGIN_ID = "login_id";
 
-    private String mUsername, mPassword;
     private EditText mUsernameText, mPasswordText;
     private Button mLoginButton;
     private TextView mNewUser;
@@ -55,34 +49,20 @@ public class LoginFragment extends Fragment {
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mUsername = mUsernameText.getText().toString();
-                mPassword = mPasswordText.getText().toString();
-                login();
+                boolean valid = Login.validate(mUsernameText.getText().toString(),
+                        mPasswordText.getText().toString());
+                CharSequence message = (valid) ? "Connected" : "Invalid username or password";
+                Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+
             }
         });
-
         mNewUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 newUser();
             }
         });
-
-                return v;
-
-    }
-
-    private void login() {
-        boolean connected;
-        String status;
-        Login login = new Login();
-        connected = login.login(mUsername.toString(), mPassword.toString());
-
-        if (connected) status = "Connected";
-        else status = "Error Occured";
-
-        Toast.makeText(getContext(), status,Toast.LENGTH_SHORT).show();
-
+        return v;
     }
 
     private void newUser() {
