@@ -9,7 +9,7 @@ food.
 
 ## Running This Code
 
-Simply clone the database from
+Simply clone the code from
 [GitHub](https://github.com/CapitalistLepton/MunchSquad) or if you have the zip
 file, open it and put the files in your AndroidStudioProjects directory.
 
