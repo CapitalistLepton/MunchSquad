@@ -45,8 +45,12 @@ public class Login {
                     "&name=" +
                     URLEncoder.encode(name, "UTF-8");
             JSONObject resp = DBLink.post("/customers", params);
-            return resp != null;
-        } catch (IOException e) {
+            if (resp == null || resp.has("error")) {
+                return false;
+            } else {
+                return resp.getString("username").equals(username);
+            }
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
