@@ -2,31 +2,30 @@ package com.capitalistlepton.munchsquad;
 
 import com.capitalistlepton.munchsquad.Model.Login;
 
-import org.junit.Before;
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 public class LoginTest {
 
-    private Login login;
-
-    @Before
-    public void init() {
-        login = new Login();
-    }
-
     @Test
     public void validLogin() {
-        assertTrue(login.validate("admin", "password"));
+        assertTrue(Login.validate("admin", "password"));
     }
 
     @Test
     public void invalidLoginWrongPassword() {
-        assertFalse(login.validate("admin", "pass"));
+        assertFalse(Login.validate("admin", "pass"));
     }
 
     @Test
     public void invalidLoginInvalidUsername() {
-        assertFalse(login.validate("joe", "pass"));
+        assertFalse(Login.validate("joe", "pass"));
+    }
+
+    @Test
+    public void validCreateUser() {
+        assertTrue(Login.createUser("Joe Bags", "password123",
+                "joey") && Login.validate("joey", "password123"));
     }
 }
