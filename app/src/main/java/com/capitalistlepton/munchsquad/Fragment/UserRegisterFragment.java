@@ -1,5 +1,6 @@
 package com.capitalistlepton.munchsquad.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.capitalistlepton.munchsquad.Activity.LoginActivity;
 import com.capitalistlepton.munchsquad.Model.Login;
 import com.capitalistlepton.munchsquad.R;
 
@@ -30,17 +32,22 @@ public class UserRegisterFragment extends Fragment {
         mRegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean result;
-                String status;
-                result = Login.createUser(mNameText.getText().toString(),
+                boolean success = Login.createUser(mNameText.getText().toString(),
                         mPasswordText.getText().toString(), mUsernameText.getText().toString());
-                if (result) status = "Account created";
-                else status = "Error Occured";
-
-                Toast.makeText(getContext(), status,Toast.LENGTH_SHORT).show();
+                if (success) {
+                    redirectToLogin();
+                } else {
+                    CharSequence msg = "Failed to create new account";
+                    Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
         return v;
+    }
+
+    private void redirectToLogin() {
+        Intent intent = new Intent(getActivity(), LoginActivity.class);
+        startActivity(intent);
     }
 }
