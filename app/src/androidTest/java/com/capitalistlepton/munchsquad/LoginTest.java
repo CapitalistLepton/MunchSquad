@@ -62,6 +62,9 @@ public class LoginTest {
                 "joey") && Login.validate("joey", "password123"));
     }
 
+    /**
+     * Fails to create a user with a username that already exists.
+     */
     @Test
     public void invalidCreateUser() {
         assertFalse(Login.createUser("Joey", "badpassword","admin"));
