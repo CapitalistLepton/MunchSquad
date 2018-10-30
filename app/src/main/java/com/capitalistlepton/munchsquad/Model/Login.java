@@ -1,19 +1,17 @@
 package com.capitalistlepton.munchsquad.Model;
 
 import com.capitalistlepton.munchsquad.Database.BCrypt;
-import com.capitalistlepton.munchsquad.Database.DBLink;
 import com.capitalistlepton.munchsquad.Database.DeleteRequest;
 import com.capitalistlepton.munchsquad.Database.GetRequest;
 import com.capitalistlepton.munchsquad.Database.PostRequest;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.concurrent.ExecutionException;
 
+/**
+ * Login model that handles new account creation and password validation.
+ */
 public class Login {
 
     /**

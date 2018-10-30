@@ -3,6 +3,9 @@ package com.capitalistlepton.munchsquad.Database;
 import java.io.UnsupportedEncodingException;
 import java.security.SecureRandom;
 
+/**
+ * BCrypt library for hashing and checking passwords.
+ */
 public class BCrypt {
     // BCrypt parameters
     private static final int GENSALT_DEFAULT_LOG2_ROUNDS = 10;
