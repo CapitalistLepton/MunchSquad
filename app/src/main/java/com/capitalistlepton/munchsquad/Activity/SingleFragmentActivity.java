@@ -7,6 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.capitalistlepton.munchsquad.R;
 
+/**
+ * Super class to host Activities composed of one fragment.
+ */
 public abstract class SingleFragmentActivity extends AppCompatActivity {
 
     protected abstract Fragment createFragment();
@@ -16,7 +19,6 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fragment);
-
 
         FragmentManager fm = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentById(R.id.fragment_container);

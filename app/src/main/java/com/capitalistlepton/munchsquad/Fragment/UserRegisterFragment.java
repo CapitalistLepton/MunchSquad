@@ -1,6 +1,7 @@
 package com.capitalistlepton.munchsquad.Fragment;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -14,6 +15,11 @@ import com.capitalistlepton.munchsquad.Activity.LoginActivity;
 import com.capitalistlepton.munchsquad.Model.Login;
 import com.capitalistlepton.munchsquad.R;
 
+import java.util.Objects;
+
+/**
+ * Handles User creating a new account.
+ */
 public class UserRegisterFragment extends Fragment {
 
     private EditText mNameText, mUsernameText, mPasswordText;
@@ -35,6 +41,8 @@ public class UserRegisterFragment extends Fragment {
                 boolean success = Login.createUser(mNameText.getText().toString(),
                         mPasswordText.getText().toString(), mUsernameText.getText().toString());
                 if (success) {
+                    CharSequence msg = "Account successfully created";
+                    Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
                     redirectToLogin();
                 } else {
                     CharSequence msg = "Failed to create new account";
@@ -46,8 +54,8 @@ public class UserRegisterFragment extends Fragment {
         return v;
     }
 
+    //Sends user back to login screen after successful account creation.
     private void redirectToLogin() {
-        Intent intent = new Intent(getActivity(), LoginActivity.class);
-        startActivity(intent);
+            getActivity().finish();
     }
 }

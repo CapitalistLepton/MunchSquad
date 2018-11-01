@@ -113,7 +113,6 @@ public class DBLink {
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("GET");
 //        int responseCode = con.getResponseCode();
-        //System.out.println("GET Response Code: " + responseCode);
 //        if (responseCode == HttpURLConnection.HTTP_OK) { // success
             BufferedReader in = new BufferedReader(new InputStreamReader(
                     con.getInputStream()));
@@ -124,7 +123,6 @@ public class DBLink {
                 response.append(inputLine);
             }
             in.close();
-//            System.out.println(response.toString());
 
             JSONObject result;
             try {

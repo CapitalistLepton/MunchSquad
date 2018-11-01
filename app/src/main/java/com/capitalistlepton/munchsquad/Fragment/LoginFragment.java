@@ -18,6 +18,9 @@ import com.capitalistlepton.munchsquad.Activity.UserRegisterActivity;
 import com.capitalistlepton.munchsquad.Model.Login;
 import com.capitalistlepton.munchsquad.R;
 
+/**
+ * Handles User logging into application.
+ */
 public class LoginFragment extends Fragment {
 
     private static final String ARG_LOGIN_ID = "login_id";
@@ -29,7 +32,8 @@ public class LoginFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setHasOptionsMenu(true);
+        //Enable menu
+        //setHasOptionsMenu(true);
     }
 
     @Override
@@ -40,7 +44,6 @@ public class LoginFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_login, container, false);
 
         //finds xml resources:
-
         mUsernameText = (EditText) v.findViewById(R.id.login_username);
         mPasswordText = (EditText) v.findViewById(R.id.login_password);
         mLoginButton = (Button) v.findViewById(R.id.login_login_button);
@@ -65,6 +68,9 @@ public class LoginFragment extends Fragment {
         return v;
     }
 
+    /**
+     * Displays new user page, handles account creation.
+     */
     private void newUser() {
         Intent intent = new Intent(getActivity(), UserRegisterActivity.class);
         startActivity(intent);
