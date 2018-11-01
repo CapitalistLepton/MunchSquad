@@ -15,7 +15,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.capitalistlepton.munchsquad.Activity.UserRegisterActivity;
+import com.capitalistlepton.munchsquad.Activity.WelcomeActivity;
 import com.capitalistlepton.munchsquad.Model.Login;
+import com.capitalistlepton.munchsquad.Model.Session;
 import com.capitalistlepton.munchsquad.R;
 
 /**
@@ -52,11 +54,7 @@ public class LoginFragment extends Fragment {
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean valid = Login.validate(mUsernameText.getText().toString(),
-                        mPasswordText.getText().toString());
-                CharSequence message = (valid) ? "Connected" : "Invalid username or password";
-                Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
-
+                login();
             }
         });
         mNewUser.setOnClickListener(new View.OnClickListener() {
@@ -74,6 +72,23 @@ public class LoginFragment extends Fragment {
     private void newUser() {
         Intent intent = new Intent(getActivity(), UserRegisterActivity.class);
         startActivity(intent);
+    }
+
+    /**
+     * Displays the welcome page, logs in.
+     */
+    private void login() {
+        boolean valid = Login.validate(mUsernameText.getText().toString(),
+                mPasswordText.getText().toString());
+        if (valid) {
+            Session.login(mUsernameText.getText().toString());
+            Intent intent = new Intent(getActivity(), WelcomeActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            getActivity().finish();
+        } else {
+            Toast.makeText(getContext(), "Invalid username or password", Toast.LENGTH_SHORT).show();
+        }
     }
 
 

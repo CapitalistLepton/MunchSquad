@@ -54,7 +54,9 @@ public class UserRegisterFragment extends Fragment {
         return v;
     }
 
-    //Sends user back to login screen after successful account creation.
+    /**
+     * Sends user back to login screen after successful account creation.
+     */
     private void redirectToLogin() {
             getActivity().finish();
     }

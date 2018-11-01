@@ -7,9 +7,13 @@
     <string name="user_register_password_hint">Password</string>
     <string name="user_register_address_hint">Address</string>
     <string name="login">Login</string>
+    <string name="logout">Logout</string>
     <string name="new_user">New User?</string>
     <string name="hint_username">Username</string>
     <string name="hint_password">Password</string>
     <string name="hint_name">Name</string>
+    <string name="welcome_title">Welcome</string>
+    <string name="welcome_subtitle">App under construction. Check again next week.</string>
+    <string name="session_username"> </string>
 
 </resources>
