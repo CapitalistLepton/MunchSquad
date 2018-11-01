@@ -4,7 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.security.SecureRandom;
 
 /**
- * Encrypts and sends web requests.
+ * BCrypt library for hashing and checking passwords.
  */
 public class BCrypt {
     // BCrypt parameters
