@@ -38,7 +38,7 @@ public class WelcomeFragment extends Fragment {
         mWelcome = (TextView) v.findViewById(R.id.welcome_Welcome);
         mLogoutButton = (Button) v.findViewById(R.id.welcome_logout);
 
-        mWelcome.setText("Welcome " + Session.getUsername() + "!");
+        mWelcome.setText("Welcome " + Session.getName() + "!");
 
         mLogoutButton.setOnClickListener(new View.OnClickListener() {
             @Override

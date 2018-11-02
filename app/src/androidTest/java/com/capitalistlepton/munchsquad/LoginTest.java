@@ -9,6 +9,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -26,7 +27,7 @@ public class LoginTest {
      */
     @BeforeClass
     public static void startup() {
-        Login.createUser("admin", "password","admin");
+        Login.createUser("Administrator", "password","admin");
     }
 
     /**
@@ -35,6 +36,11 @@ public class LoginTest {
     @Test
     public void validLogin() {
         assertTrue(Login.validate("admin", "password"));
+    }
+
+    @Test
+    public void getName() {
+        assertEquals("Administrator", Login.getFullName("admin"));
     }
 
     /**

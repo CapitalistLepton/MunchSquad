@@ -39,6 +39,24 @@ public class Login {
     }
 
     /**
+     * Gets the user's preferred full name from the database.
+     *
+     * @param username String username to lookup.
+     * @return the user's preferred full name.
+     */
+    public static String getFullName(String username) {
+        GetRequest req = new GetRequest();
+        try {
+            JSONObject resp = req.execute("/customers/" + URLEncoder.encode(username, "UTF-8"))
+                    .get();
+            return resp.getString("name");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
      * Attempts to create a new user in the database.
      *
      * @param username String username of the new user.
